@@ -19,7 +19,9 @@ class ViewController: UIViewController {
     @IBOutlet weak var countdown: UILabel!
     
     var audioFile: Bool = false
-    var timeLimit: Int = 15
+    var timeLimit: Int = 10
+    
+    var remainingTime: Int = 0
     
     enum RecordingState {
         case InProgress
@@ -27,11 +29,17 @@ class ViewController: UIViewController {
         case Waiting
     }
     
+    var timer = NSTimer()
+    
     var currentRecordingState = RecordingState.Waiting
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setVisibilityForRecordingState(currentRecordingState)
+        
+        remainingTime = timeLimit
+        countdown.text = String(remainingTime)
+        
         // Do any additional setup after loading the view, typically from a nib.
     }
 
@@ -39,12 +47,33 @@ class ViewController: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
+    func sayHello()
+    {
+        remainingTime = remainingTime - 1
+        countdown.text = String(remainingTime)
+        if remainingTime == 0 {
+            toggleRecord(false)
+        }
+    }
 
     @IBAction func recordAudio(sender: UIButton) {
         if self.currentRecordingState == RecordingState.InProgress {
-            setVisibilityForRecordingState(.Completed)
+            toggleRecord(false)
         } else if self.currentRecordingState == RecordingState.Waiting {
+            toggleRecord(true)
+        }
+    }
+    
+    func toggleRecord(record: Bool) {
+        if record == true {
+            timer = NSTimer.scheduledTimerWithTimeInterval(1.0, target: self, selector: Selector("sayHello"), userInfo: nil, repeats: true)
             setVisibilityForRecordingState(.InProgress)
+        } else {
+            timer.invalidate()
+            remainingTime = timeLimit
+            countdown.text = String(timeLimit)
+            setVisibilityForRecordingState(.Completed)
         }
     }
     
