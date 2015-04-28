@@ -25,15 +25,6 @@
                                     <action selector="recordAudio:" destination="BYZ-38-t0r" eventType="touchUpInside" id="ZZ7-IB-bvh"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0N2-pl-rb8">
-                                <rect key="frame" x="277" y="423" width="51" height="30"/>
-                                <state key="normal" title="Publish">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <segue destination="ye9-Ai-AXv" kind="show" id="t4v-6y-8vF"/>
-                                </connections>
-                            </button>
                             <button hidden="YES" opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="w24-jp-sFv">
                                 <rect key="frame" x="273" y="319" width="54" height="30"/>
                                 <state key="normal" title="Preview">
@@ -49,18 +40,36 @@
                                     <action selector="deleteAudio:" destination="BYZ-38-t0r" eventType="touchUpInside" id="NeF-ic-hJo"/>
                                 </connections>
                             </button>
+                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="HI" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dYH-am-JUP">
+                                <rect key="frame" x="292" y="135" width="17" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0N2-pl-rb8">
+                                <rect key="frame" x="275" y="481" width="51" height="30"/>
+                                <state key="normal" title="Publish">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <segue destination="ye9-Ai-AXv" kind="show" id="t4v-6y-8vF"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="centerX" secondItem="0N2-pl-rb8" secondAttribute="centerX" constant="-2.5" id="3Am-gB-Cei"/>
-                            <constraint firstAttribute="centerX" secondItem="95q-Fg-8dr" secondAttribute="centerX" id="77B-Fg-Iso"/>
-                            <constraint firstAttribute="centerY" secondItem="95q-Fg-8dr" secondAttribute="centerY" id="ns7-S2-q86"/>
-                            <constraint firstAttribute="centerX" secondItem="w24-jp-sFv" secondAttribute="centerX" id="pjC-4N-E00"/>
-                            <constraint firstAttribute="centerX" secondItem="5Q5-Wf-jOZ" secondAttribute="centerX" id="yal-dT-Uiu"/>
+                            <constraint firstItem="dYH-am-JUP" firstAttribute="centerX" secondItem="w24-jp-sFv" secondAttribute="centerX" id="1Bx-g0-QIm"/>
+                            <constraint firstAttribute="centerX" secondItem="0N2-pl-rb8" secondAttribute="centerX" constant="-0.5" id="61s-M3-CGU"/>
+                            <constraint firstItem="dYH-am-JUP" firstAttribute="centerX" secondItem="5Q5-Wf-jOZ" secondAttribute="centerX" id="YiV-Qn-Cbu"/>
+                            <constraint firstAttribute="centerX" secondItem="dYH-am-JUP" secondAttribute="centerX" id="eSX-v9-6u5"/>
+                            <constraint firstItem="95q-Fg-8dr" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="neO-on-4jV"/>
+                            <constraint firstAttribute="centerX" secondItem="95q-Fg-8dr" secondAttribute="centerX" id="xf6-Uv-Y4S"/>
+                            <constraint firstItem="dYH-am-JUP" firstAttribute="centerX" secondItem="95q-Fg-8dr" secondAttribute="centerX" id="y1h-iE-gjD"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Record" id="Fvz-pp-ogp"/>
                     <connections>
+                        <outlet property="countdown" destination="dYH-am-JUP" id="XG7-74-oAD"/>
                         <outlet property="deleteButton" destination="5Q5-Wf-jOZ" id="HmD-75-LxK"/>
                         <outlet property="previewButton" destination="w24-jp-sFv" id="Vv8-c1-JYX"/>
                         <outlet property="publishButton" destination="0N2-pl-rb8" id="zgg-wI-S0U"/>

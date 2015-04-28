@@ -16,12 +16,22 @@ class ViewController: UIViewController {
     
     @IBOutlet weak var publishButton: UIButton!
     
-    var recording: Bool = false
+    @IBOutlet weak var countdown: UILabel!
+    
     var audioFile: Bool = false
+    var timeLimit: Int = 15
+    
+    enum RecordingState {
+        case InProgress
+        case Completed
+        case Waiting
+    }
+    
+    var currentRecordingState = RecordingState.Waiting
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setRecordButtonText()
+        setVisibilityForRecordingState(currentRecordingState)
         // Do any additional setup after loading the view, typically from a nib.
     }
 
@@ -31,32 +41,42 @@ class ViewController: UIViewController {
     }
 
     @IBAction func recordAudio(sender: UIButton) {
-        recording = !recording
-        
-        if(recording == false) {
+        if self.currentRecordingState == RecordingState.InProgress {
+            setVisibilityForRecordingState(.Completed)
+        } else if self.currentRecordingState == RecordingState.Waiting {
+            setVisibilityForRecordingState(.InProgress)
+        }
+    }
+    
+    @IBAction func deleteAudio(sender: UIButton) {
+        setVisibilityForRecordingState(.Waiting)
+    }
+    
+    func setVisibilityForRecordingState(state: RecordingState) {
+        switch state {
+        case .InProgress:
+            recordButton.setTitle("Stop", forState: .Normal)
+            recordButton.hidden = false
+            previewButton.hidden = true
+            deleteButton.hidden = true
+            countdown.hidden = false
+        case .Completed:
             audioFile = true
             recordButton.hidden = true
             previewButton.hidden = false
             deleteButton.hidden = false
+            countdown.hidden = true
+        case .Waiting:
+            recordButton.setTitle("Record", forState: .Normal)
+            recordButton.hidden = false
+            previewButton.hidden = true
+            deleteButton.hidden = true
+            countdown.hidden = true
         }
         
-        setRecordButtonText()
+        currentRecordingState = state
+        
     }
     
-    @IBAction func deleteAudio(sender: UIButton) {
-        audioFile = false
-        recordButton.hidden = false
-        previewButton.hidden = true
-        deleteButton.hidden = true
-    }
-    
-    func setRecordButtonText() {
-        if(recording == true) {
-            recordButton.setTitle("Stop", forState: .Normal)
-        } else {
-            recordButton.setTitle("Record", forState: .Normal)
-        }
-    }
-
 }
 
