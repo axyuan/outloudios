@@ -55,6 +55,7 @@ class ViewController: UIViewController {
     }
     
     @IBAction func previewAudio(sender: UIButton) {
+        audioPlayer.stop()
         audioPlayer.prepareToPlay()
         audioPlayer.play()
     }
@@ -89,6 +90,7 @@ class ViewController: UIViewController {
     }
     
     @IBAction func deleteAudio(sender: UIButton) {
+        audioPlayer.stop()
         setVisibilityForRecordingState(.Waiting)
     }
     
