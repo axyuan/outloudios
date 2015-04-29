@@ -47,8 +47,6 @@ class ViewController: UIViewController {
         
         var error:NSError?
         audioPlayer = AVAudioPlayer(contentsOfURL: recording, error: &error)
-        audioPlayer.prepareToPlay()
-        audioPlayer.play()
     }
 
     override func didReceiveMemoryWarning() {
@@ -56,7 +54,12 @@ class ViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    func sayHello()
+    @IBAction func previewAudio(sender: UIButton) {
+        audioPlayer.prepareToPlay()
+        audioPlayer.play()
+    }
+    
+    func countdownDisplay()
     {
         remainingTime = remainingTime - 1
         countdown.text = String(remainingTime)
@@ -75,7 +78,7 @@ class ViewController: UIViewController {
     
     func toggleRecord(record: Bool) {
         if record == true {
-            timer = NSTimer.scheduledTimerWithTimeInterval(1.0, target: self, selector: Selector("sayHello"), userInfo: nil, repeats: true)
+            timer = NSTimer.scheduledTimerWithTimeInterval(1.0, target: self, selector: Selector("countdownDisplay"), userInfo: nil, repeats: true)
             setVisibilityForRecordingState(.InProgress)
         } else {
             timer.invalidate()
