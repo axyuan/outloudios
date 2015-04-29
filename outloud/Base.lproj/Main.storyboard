@@ -2,6 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7531" systemVersion="14D131" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="exO-WD-Zts">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7520"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--Record-->
@@ -80,10 +81,10 @@
             </objects>
             <point key="canvasLocation" x="1039" y="372"/>
         </scene>
-        <!--View Controller-->
+        <!--Publish View Controller-->
         <scene sceneID="Jd5-u8-Egk">
             <objects>
-                <viewController id="ye9-Ai-AXv" sceneMemberID="viewController">
+                <viewController id="ye9-Ai-AXv" customClass="PublishViewController" customModule="outloud" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="bfg-oM-ZUM"/>
                         <viewControllerLayoutGuide type="bottom" id="X5U-8z-7MA"/>
@@ -91,8 +92,43 @@
                     <view key="view" contentMode="scaleToFill" id="Jce-JD-3L8">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Byu-hC-YfT">
+                                <rect key="frame" x="16" y="169" width="568" height="150"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="H2f-nD-e5U">
+                                <rect key="frame" x="275" y="469" width="51" height="30"/>
+                                <state key="normal" title="Publish">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Describe your post" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rgV-hU-rsw">
+                                <rect key="frame" x="16" y="98" width="568" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="rgV-hU-rsw" firstAttribute="leading" secondItem="Byu-hC-YfT" secondAttribute="leading" id="0lX-OZ-mmR"/>
+                            <constraint firstAttribute="centerX" secondItem="H2f-nD-e5U" secondAttribute="centerX" id="4qw-ig-nhy"/>
+                            <constraint firstItem="X5U-8z-7MA" firstAttribute="top" secondItem="H2f-nD-e5U" secondAttribute="bottom" constant="101" id="Fsq-1a-Hzq"/>
+                            <constraint firstItem="rgV-hU-rsw" firstAttribute="top" secondItem="bfg-oM-ZUM" secondAttribute="bottom" constant="34" id="HgB-LJ-UuX"/>
+                            <constraint firstAttribute="centerX" secondItem="rgV-hU-rsw" secondAttribute="centerX" id="OTy-n7-bgX"/>
+                            <constraint firstItem="Byu-hC-YfT" firstAttribute="leading" secondItem="Jce-JD-3L8" secondAttribute="leadingMargin" id="nIc-uj-UCf"/>
+                            <constraint firstItem="Byu-hC-YfT" firstAttribute="top" secondItem="bfg-oM-ZUM" secondAttribute="bottom" constant="105" id="nJJ-jR-SLr"/>
+                            <constraint firstAttribute="centerX" secondItem="Byu-hC-YfT" secondAttribute="centerX" id="r27-wp-F9s"/>
+                            <constraint firstItem="X5U-8z-7MA" firstAttribute="top" secondItem="Byu-hC-YfT" secondAttribute="bottom" constant="281" id="yYW-KP-Y7s"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="publishButton" destination="H2f-nD-e5U" id="8mM-pI-V2t"/>
+                        <outlet property="textarea" destination="Byu-hC-YfT" id="xjB-Kj-Lq4"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="60X-UF-r7h" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

@@ -89,18 +89,21 @@ class ViewController: UIViewController {
             previewButton.hidden = true
             deleteButton.hidden = true
             countdown.hidden = false
+            publishButton.hidden = true
         case .Completed:
             audioFile = true
             recordButton.hidden = true
             previewButton.hidden = false
             deleteButton.hidden = false
             countdown.hidden = true
+            publishButton.hidden = false
         case .Waiting:
             recordButton.setTitle("Record", forState: .Normal)
             recordButton.hidden = false
             previewButton.hidden = true
             deleteButton.hidden = true
             countdown.hidden = true
+            publishButton.hidden = true
         }
         
         currentRecordingState = state
