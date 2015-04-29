@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import AVFoundation
 
 class ViewController: UIViewController {
 
@@ -33,6 +34,8 @@ class ViewController: UIViewController {
     
     var currentRecordingState = RecordingState.Waiting
     
+    var audioPlayer = AVAudioPlayer()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setVisibilityForRecordingState(currentRecordingState)
@@ -40,7 +43,12 @@ class ViewController: UIViewController {
         remainingTime = timeLimit
         countdown.text = String(remainingTime)
         
-        // Do any additional setup after loading the view, typically from a nib.
+        var recording = NSURL(fileURLWithPath: NSBundle.mainBundle().pathForResource("applause", ofType: "mp3")!)
+        
+        var error:NSError?
+        audioPlayer = AVAudioPlayer(contentsOfURL: recording, error: &error)
+        audioPlayer.prepareToPlay()
+        audioPlayer.play()
     }
 
     override func didReceiveMemoryWarning() {
