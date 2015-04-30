@@ -9,7 +9,7 @@
 import UIKit
 import AVFoundation
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, AVAudioRecorderDelegate {
 
     @IBOutlet weak var recordButton: UIButton!
     @IBOutlet weak var previewButton: UIButton!
@@ -34,7 +34,10 @@ class ViewController: UIViewController {
     
     var currentRecordingState = RecordingState.Waiting
     
+    var audioRecorder:AVAudioRecorder!
     var audioPlayer = AVAudioPlayer()
+    var recordedAudio: RecordedAudio!
+    var recording: NSURL!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -43,7 +46,7 @@ class ViewController: UIViewController {
         remainingTime = timeLimit
         countdown.text = String(remainingTime)
         
-        var recording = NSURL(fileURLWithPath: NSBundle.mainBundle().pathForResource("applause", ofType: "mp3")!)
+        recording = NSURL(fileURLWithPath: NSBundle.mainBundle().pathForResource("applause", ofType: "mp3")!)
         
         var error:NSError?
         audioPlayer = AVAudioPlayer(contentsOfURL: recording, error: &error)
@@ -81,12 +84,41 @@ class ViewController: UIViewController {
         if record == true {
             timer = NSTimer.scheduledTimerWithTimeInterval(1.0, target: self, selector: Selector("countdownDisplay"), userInfo: nil, repeats: true)
             setVisibilityForRecordingState(.InProgress)
+            let dirPath = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0] as! String
+            let currentDateTime = NSDate()
+            let formatter = NSDateFormatter()
+            formatter.dateFormat = "ddMMyyyy-HHmmss"
+            let recordingName = formatter.stringFromDate(currentDateTime) + ".wav"
+            let pathArray = [dirPath, recordingName]
+            let filePath = NSURL.fileURLWithPathComponents(pathArray)
+            
+            var session = AVAudioSession.sharedInstance()
+            session.setCategory(AVAudioSessionCategoryPlayAndRecord, error: nil)
+            
+            audioRecorder = AVAudioRecorder(URL: filePath, settings: nil, error: nil)
+            audioRecorder.delegate = self
+            audioRecorder.meteringEnabled = true
+            audioRecorder.prepareToRecord()
+            audioRecorder.record()
         } else {
             timer.invalidate()
             remainingTime = timeLimit
             countdown.text = String(timeLimit)
             setVisibilityForRecordingState(.Completed)
+            
+            audioRecorder.stop()
+            var audioSession = AVAudioSession.sharedInstance()
+            audioSession.setActive(false, error: nil)
         }
+    }
+    
+    func audioRecorderDidFinishRecording(recorder: AVAudioRecorder!, successfully flag: Bool) {
+        if(flag) {
+            recordedAudio = RecordedAudio()
+            recordedAudio.filePathURL = recorder.url
+            recordedAudio.title = recorder.url.lastPathComponent
+        }
+        
     }
     
     @IBAction func deleteAudio(sender: UIButton) {
