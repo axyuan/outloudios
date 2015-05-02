@@ -13,8 +13,12 @@ class PublishViewController: UIViewController {
     @IBOutlet weak var publishButton: UIButton!
     @IBOutlet weak var textarea: UITextView!
     
+    var receivedAudio:RecordedAudio!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        println(receivedAudio)
         
         textarea.layer.masksToBounds = true
         textarea.layer.borderColor = UIColor.grayColor().CGColor

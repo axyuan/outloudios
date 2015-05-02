@@ -14,9 +14,7 @@ class ViewController: UIViewController, AVAudioRecorderDelegate {
     @IBOutlet weak var recordButton: UIButton!
     @IBOutlet weak var previewButton: UIButton!
     @IBOutlet weak var deleteButton: UIButton!
-    
     @IBOutlet weak var publishButton: UIButton!
-    
     @IBOutlet weak var countdown: UILabel!
     
     var audioFile: Bool = false
@@ -117,6 +115,10 @@ class ViewController: UIViewController, AVAudioRecorderDelegate {
             recordedAudio = RecordedAudio()
             recordedAudio.filePathURL = recorder.url
             recordedAudio.title = recorder.url.lastPathComponent
+            
+            var error:NSError?
+            recording = recorder.url
+            audioPlayer = AVAudioPlayer(contentsOfURL: recording, error: &error)
         }
         
     }
@@ -153,6 +155,13 @@ class ViewController: UIViewController, AVAudioRecorderDelegate {
         
         currentRecordingState = state
         
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == "publish" {
+            let PublishVC:PublishViewController = segue.destinationViewController as! PublishViewController
+            PublishVC.receivedAudio = recordedAudio
+        }
     }
     
 }
