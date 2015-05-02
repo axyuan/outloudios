@@ -19,7 +19,6 @@ class ViewController: UIViewController, AVAudioRecorderDelegate {
     
     var audioFile: Bool = false
     var timeLimit: Int = 10
-    
     var remainingTime: Int = 0
     
     enum RecordingState {
@@ -29,9 +28,7 @@ class ViewController: UIViewController, AVAudioRecorderDelegate {
     }
     
     var timer = NSTimer()
-    
     var currentRecordingState = RecordingState.Waiting
-    
     var audioRecorder:AVAudioRecorder!
     var audioPlayer = AVAudioPlayer()
     var recordedAudio: RecordedAudio!
@@ -43,16 +40,17 @@ class ViewController: UIViewController, AVAudioRecorderDelegate {
         
         remainingTime = timeLimit
         countdown.text = String(remainingTime)
-        
-        recording = NSURL(fileURLWithPath: NSBundle.mainBundle().pathForResource("applause", ofType: "mp3")!)
-        
-        var error:NSError?
-        audioPlayer = AVAudioPlayer(contentsOfURL: recording, error: &error)
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == "publish" {
+            let PublishVC:PublishViewController = segue.destinationViewController as! PublishViewController
+            PublishVC.receivedAudio = recordedAudio
+        }
     }
     
     @IBAction func previewAudio(sender: UIButton) {
@@ -60,21 +58,25 @@ class ViewController: UIViewController, AVAudioRecorderDelegate {
         audioPlayer.prepareToPlay()
         audioPlayer.play()
     }
-    
-    func countdownDisplay()
-    {
-        remainingTime = remainingTime - 1
-        countdown.text = String(remainingTime)
-        if remainingTime == 0 {
-            toggleRecord(false)
-        }
-    }
 
     @IBAction func recordAudio(sender: UIButton) {
         if self.currentRecordingState == RecordingState.InProgress {
             toggleRecord(false)
         } else if self.currentRecordingState == RecordingState.Waiting {
             toggleRecord(true)
+        }
+    }
+    
+    @IBAction func deleteAudio(sender: UIButton) {
+        audioPlayer.stop()
+        setVisibilityForRecordingState(.Waiting)
+    }
+    
+    func countdownDisplay() {
+        remainingTime = remainingTime - 1
+        countdown.text = String(remainingTime)
+        if remainingTime == 0 {
+            toggleRecord(false)
         }
     }
     
@@ -123,11 +125,6 @@ class ViewController: UIViewController, AVAudioRecorderDelegate {
         
     }
     
-    @IBAction func deleteAudio(sender: UIButton) {
-        audioPlayer.stop()
-        setVisibilityForRecordingState(.Waiting)
-    }
-    
     func setVisibilityForRecordingState(state: RecordingState) {
         switch state {
         case .InProgress:
@@ -154,14 +151,6 @@ class ViewController: UIViewController, AVAudioRecorderDelegate {
         }
         
         currentRecordingState = state
-        
-    }
-    
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if segue.identifier == "publish" {
-            let PublishVC:PublishViewController = segue.destinationViewController as! PublishViewController
-            PublishVC.receivedAudio = recordedAudio
-        }
     }
     
 }
