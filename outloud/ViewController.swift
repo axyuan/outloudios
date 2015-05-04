@@ -40,6 +40,8 @@ class ViewController: UIViewController, AVAudioRecorderDelegate {
         
         remainingTime = timeLimit
         countdown.text = String(remainingTime)
+        
+        let manager = AFHTTPRequestOperationManager()
     }
 
     override func didReceiveMemoryWarning() {
