@@ -8,7 +8,7 @@
 
 import UIKit
 
-class PublishViewController: UIViewController {
+class PublishViewController: UIViewController, UITextViewDelegate {
     
     @IBOutlet weak var publishButton: UIButton!
     @IBOutlet weak var textarea: UITextView!
@@ -23,6 +23,8 @@ class PublishViewController: UIViewController {
         textarea.layer.masksToBounds = true
         textarea.layer.borderColor = UIColor.grayColor().CGColor
         textarea.layer.borderWidth = 1.0
+        
+        textarea.delegate = self
 
         // Do any additional setup after loading the view.
     }
@@ -31,6 +33,12 @@ class PublishViewController: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
+    func textView(textView: UITextView, shouldChangeTextInRange range: NSRange, replacementText text: String) -> Bool {
+        let newLength = count(textView.text) + count(text) - range.length
+        return newLength <= 60
+    }
+    
     
 
     /*
