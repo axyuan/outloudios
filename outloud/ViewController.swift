@@ -40,8 +40,6 @@ class ViewController: UIViewController, AVAudioRecorderDelegate {
         
         remainingTime = timeLimit
         countdown.text = String(remainingTime)
-        
-        let manager = AFHTTPRequestOperationManager()
     }
 
     override func didReceiveMemoryWarning() {
@@ -104,6 +102,9 @@ class ViewController: UIViewController, AVAudioRecorderDelegate {
             audioRecorder.record()
         } else {
             timer.invalidate()
+            recordedAudio = RecordedAudio()
+            recordedAudio.duration = timeLimit - remainingTime
+            
             remainingTime = timeLimit
             countdown.text = String(timeLimit)
             setVisibilityForRecordingState(.Completed)
@@ -116,7 +117,7 @@ class ViewController: UIViewController, AVAudioRecorderDelegate {
     
     func audioRecorderDidFinishRecording(recorder: AVAudioRecorder!, successfully flag: Bool) {
         if(flag) {
-            recordedAudio = RecordedAudio()
+            
             recordedAudio.filePathURL = recorder.url
             recordedAudio.title = recorder.url.lastPathComponent
             

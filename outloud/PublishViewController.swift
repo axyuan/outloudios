@@ -18,15 +18,25 @@ class PublishViewController: UIViewController, UITextViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        println(receivedAudio)
-        
         textarea.layer.masksToBounds = true
         textarea.layer.borderColor = UIColor.grayColor().CGColor
         textarea.layer.borderWidth = 1.0
         
         textarea.delegate = self
-
-        // Do any additional setup after loading the view.
+        
+        let manager = AFHTTPRequestOperationManager()
+        
+        var policyAndSignatureForm = Dictionary<String, Any>()
+        policyAndSignatureForm["duration"] = receivedAudio.duration
+        
+        //manager.GET( "http:/graph.facebook.com/bobdylan",
+//        parameters: nil,
+//        success: { (operation: AFHTTPRequestOperation!,responseObject: AnyObject!) in
+//            println("Response: " + responseObject.description)
+//        },
+//        failure: { (operation: AFHTTPRequestOperation!,error: NSError!) in
+//            println("Error: " + error.localizedDescription)
+//        })
     }
 
     override func didReceiveMemoryWarning() {
