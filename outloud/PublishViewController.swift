@@ -14,6 +14,7 @@ class PublishViewController: UIViewController, UITextViewDelegate {
     @IBOutlet weak var textarea: UITextView!
     
     var receivedAudio:RecordedAudio!
+    var policyAndSignatureForm = Dictionary<String, Any>()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,7 +27,6 @@ class PublishViewController: UIViewController, UITextViewDelegate {
         
         let manager = AFHTTPRequestOperationManager()
         
-        var policyAndSignatureForm = Dictionary<String, Any>()
         policyAndSignatureForm["duration"] = receivedAudio.duration
         
         //manager.GET( "http:/graph.facebook.com/bobdylan",
@@ -49,7 +49,9 @@ class PublishViewController: UIViewController, UITextViewDelegate {
         return newLength <= 60
     }
     
-    
+    func textViewDidChange(textView: UITextView) {
+        policyAndSignatureForm["title"] = textView.text
+    }
 
     /*
     // MARK: - Navigation

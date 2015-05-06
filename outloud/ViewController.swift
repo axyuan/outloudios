@@ -101,10 +101,10 @@ class ViewController: UIViewController, AVAudioRecorderDelegate {
             audioRecorder.prepareToRecord()
             audioRecorder.record()
         } else {
-            timer.invalidate()
             recordedAudio = RecordedAudio()
             recordedAudio.duration = timeLimit - remainingTime
             
+            timer.invalidate()
             remainingTime = timeLimit
             countdown.text = String(timeLimit)
             setVisibilityForRecordingState(.Completed)
@@ -117,7 +117,6 @@ class ViewController: UIViewController, AVAudioRecorderDelegate {
     
     func audioRecorderDidFinishRecording(recorder: AVAudioRecorder!, successfully flag: Bool) {
         if(flag) {
-            
             recordedAudio.filePathURL = recorder.url
             recordedAudio.title = recorder.url.lastPathComponent
             
@@ -125,7 +124,6 @@ class ViewController: UIViewController, AVAudioRecorderDelegate {
             recording = recorder.url
             audioPlayer = AVAudioPlayer(contentsOfURL: recording, error: &error)
         }
-        
     }
     
     func setVisibilityForRecordingState(state: RecordingState) {
@@ -152,7 +150,6 @@ class ViewController: UIViewController, AVAudioRecorderDelegate {
             countdown.hidden = true
             publishButton.hidden = true
         }
-        
         currentRecordingState = state
     }
     
