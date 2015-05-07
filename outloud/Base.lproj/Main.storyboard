@@ -17,7 +17,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="95q-Fg-8dr">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="95q-Fg-8dr" customClass="CustomButton" customModule="outloud" customModuleProvider="target">
                                 <rect key="frame" x="275" y="285" width="50" height="30"/>
                                 <state key="normal" title="Record">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -26,7 +26,7 @@
                                     <action selector="recordAudio:" destination="BYZ-38-t0r" eventType="touchUpInside" id="ZZ7-IB-bvh"/>
                                 </connections>
                             </button>
-                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="w24-jp-sFv">
+                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="w24-jp-sFv" customClass="CustomButton" customModule="outloud" customModuleProvider="target">
                                 <rect key="frame" x="273" y="319" width="54" height="30"/>
                                 <state key="normal" title="Preview">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -35,7 +35,7 @@
                                     <action selector="previewAudio:" destination="BYZ-38-t0r" eventType="touchUpInside" id="7EB-mf-nkX"/>
                                 </connections>
                             </button>
-                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5Q5-Wf-jOZ">
+                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5Q5-Wf-jOZ" customClass="CustomButton" customModule="outloud" customModuleProvider="target">
                                 <rect key="frame" x="269" y="357" width="62" height="30"/>
                                 <state key="normal" title="Try again">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -50,7 +50,7 @@
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0N2-pl-rb8">
+                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0N2-pl-rb8" customClass="CustomButton" customModule="outloud" customModuleProvider="target">
                                 <rect key="frame" x="285" y="481" width="32" height="30"/>
                                 <state key="normal" title="Next">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -64,6 +64,7 @@
                         <constraints>
                             <constraint firstItem="dYH-am-JUP" firstAttribute="centerX" secondItem="w24-jp-sFv" secondAttribute="centerX" id="1Bx-g0-QIm"/>
                             <constraint firstAttribute="centerX" secondItem="0N2-pl-rb8" secondAttribute="centerX" constant="-0.5" id="61s-M3-CGU"/>
+                            <constraint firstItem="5Q5-Wf-jOZ" firstAttribute="top" secondItem="w24-jp-sFv" secondAttribute="bottom" constant="8" id="Adk-3X-fhM"/>
                             <constraint firstItem="dYH-am-JUP" firstAttribute="centerX" secondItem="5Q5-Wf-jOZ" secondAttribute="centerX" id="YiV-Qn-Cbu"/>
                             <constraint firstAttribute="centerX" secondItem="dYH-am-JUP" secondAttribute="centerX" id="eSX-v9-6u5"/>
                             <constraint firstItem="95q-Fg-8dr" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="neO-on-4jV"/>
@@ -102,7 +103,7 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="H2f-nD-e5U">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="H2f-nD-e5U" customClass="CustomButton" customModule="outloud" customModuleProvider="target">
                                 <rect key="frame" x="275" y="469" width="51" height="30"/>
                                 <state key="normal" title="Publish">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>

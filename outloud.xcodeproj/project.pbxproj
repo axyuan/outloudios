@@ -13,6 +13,7 @@
 		9B06487D1ACEBD9500D8F485 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9B06487C1ACEBD9500D8F485 /* Images.xcassets */; };
 		9B0648801ACEBD9500D8F485 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9B06487E1ACEBD9500D8F485 /* LaunchScreen.xib */; };
 		9B06488C1ACEBD9500D8F485 /* outloudTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B06488B1ACEBD9500D8F485 /* outloudTests.swift */; };
+		9B632E411AFA35B1008F668A /* CustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B632E401AFA35B1008F668A /* CustomButton.swift */; };
 		9B750D5B1AF24B3400B35210 /* RecordedAudio.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B750D5A1AF24B3400B35210 /* RecordedAudio.swift */; };
 		9BB62C601AF0EE2B00480093 /* PublishViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BB62C5F1AF0EE2B00480093 /* PublishViewController.swift */; };
 		9BD29E711AF78EEA0093325B /* AFHTTPRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BD29E5F1AF78EEA0093325B /* AFHTTPRequestOperation.m */; };
@@ -47,6 +48,7 @@
 		9B0648851ACEBD9500D8F485 /* outloudTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = outloudTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		9B06488A1ACEBD9500D8F485 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9B06488B1ACEBD9500D8F485 /* outloudTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = outloudTests.swift; sourceTree = "<group>"; };
+		9B632E401AFA35B1008F668A /* CustomButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CustomButton.swift; path = outloud/CustomButton.swift; sourceTree = "<group>"; };
 		9B750D5A1AF24B3400B35210 /* RecordedAudio.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecordedAudio.swift; sourceTree = "<group>"; };
 		9BB62C5F1AF0EE2B00480093 /* PublishViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PublishViewController.swift; sourceTree = "<group>"; };
 		9BD29E5E1AF78EEA0093325B /* AFHTTPRequestOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFHTTPRequestOperation.h; sourceTree = "<group>"; };
@@ -92,6 +94,7 @@
 		9B0648671ACEBD9500D8F485 = {
 			isa = PBXGroup;
 			children = (
+				9B632E401AFA35B1008F668A /* CustomButton.swift */,
 				9BD29E7A1AF78FD60093325B /* bridge.h */,
 				9BD29E5D1AF78EEA0093325B /* AFNetworking */,
 				9B0648721ACEBD9500D8F485 /* outloud */,
@@ -279,6 +282,7 @@
 				9BD29E751AF78EEA0093325B /* AFSecurityPolicy.m in Sources */,
 				9B0648781ACEBD9500D8F485 /* ViewController.swift in Sources */,
 				9BD29E721AF78EEA0093325B /* AFHTTPRequestOperationManager.m in Sources */,
+				9B632E411AFA35B1008F668A /* CustomButton.swift in Sources */,
 				9BD29E761AF78EEA0093325B /* AFURLConnectionOperation.m in Sources */,
 				9BD29E711AF78EEA0093325B /* AFHTTPRequestOperation.m in Sources */,
 				9B0648761ACEBD9500D8F485 /* AppDelegate.swift in Sources */,
