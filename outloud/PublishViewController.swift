@@ -14,6 +14,7 @@ class PublishViewController: UIViewController, UITextViewDelegate {
     @IBOutlet weak var textarea: UITextView!
     
     var receivedAudio:RecordedAudio!
+    var caption = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,23 +24,6 @@ class PublishViewController: UIViewController, UITextViewDelegate {
         textarea.layer.borderWidth = 1.0
         
         textarea.delegate = self
-        
-        let manager = AFHTTPRequestOperationManager()
-        
-        var getPresignedPostParameters = [
-            "title": "hello",
-            "duration": receivedAudio.duration,
-            "tags": []
-        ]
-        
-        manager.GET( "https://out-loud-heroku-test.herokuapp.com/api/presigned_post",
-        parameters: getPresignedPostParameters,
-        success: { (operation: AFHTTPRequestOperation!,responseObject: AnyObject!) in
-            println("Response: " + responseObject.description)
-        },
-        failure: { (operation: AFHTTPRequestOperation!,error: NSError!) in
-            println("Error: " + error.localizedDescription)
-        })
     }
 
     override func didReceiveMemoryWarning() {
@@ -52,9 +36,27 @@ class PublishViewController: UIViewController, UITextViewDelegate {
     }
     
     func textViewDidChange(textView: UITextView) {
-        //policyAndSignatureForm["title"] = textView.text
+        caption = textView.text
     }
 
+    @IBAction func publish(sender: CustomButton) {
+        let manager = AFHTTPRequestOperationManager()
+        
+        var getPresignedPostParameters = [
+            "title": caption,
+            "duration": receivedAudio.duration,
+            "tags": []
+        ]
+        
+        manager.GET( "https://out-loud-heroku-test.herokuapp.com/api/presigned_post",
+            parameters: getPresignedPostParameters,
+            success: { (operation: AFHTTPRequestOperation!,responseObject: AnyObject!) in
+                println("Response: " + responseObject.description)
+            },
+            failure: { (operation: AFHTTPRequestOperation!,error: NSError!) in
+                println("Error: " + error.localizedDescription)
+        })
+    }
     /*
     // MARK: - Navigation
 

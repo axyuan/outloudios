@@ -108,6 +108,9 @@
                                 <state key="normal" title="Publish">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="publish:" destination="ye9-Ai-AXv" eventType="touchUpInside" id="ChC-TO-Sbp"/>
+                                </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Describe your post" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rgV-hU-rsw">
                                 <rect key="frame" x="16" y="98" width="568" height="21"/>
