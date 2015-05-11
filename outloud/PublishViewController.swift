@@ -50,13 +50,16 @@ class PublishViewController: UIViewController, UITextViewDelegate {
         
         manager.GET( "https://out-loud-heroku-test.herokuapp.com/api/presigned_post",
             parameters: getPresignedPostParameters,
-            success: { (operation: AFHTTPRequestOperation!,responseObject: AnyObject!) in
-                println("Response: " + responseObject.description)
-            },
+            success: post,
             failure: { (operation: AFHTTPRequestOperation!,error: NSError!) in
                 println("Error: " + error.localizedDescription)
         })
     }
+    
+    func post(operation: AFHTTPRequestOperation!,responseObject: AnyObject!) {
+        println("Response: " + responseObject.description)
+    }
+    
     /*
     // MARK: - Navigation
 
