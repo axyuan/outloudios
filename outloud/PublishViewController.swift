@@ -14,7 +14,6 @@ class PublishViewController: UIViewController, UITextViewDelegate {
     @IBOutlet weak var textarea: UITextView!
     
     var receivedAudio:RecordedAudio!
-    var policyAndSignatureForm = Dictionary<String, Any>()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,21 +26,24 @@ class PublishViewController: UIViewController, UITextViewDelegate {
         
         let manager = AFHTTPRequestOperationManager()
         
-        policyAndSignatureForm["duration"] = receivedAudio.duration
+        var getPresignedPostParameters = [
+            "title": "hello",
+            "duration": receivedAudio.duration,
+            "tags": []
+        ]
         
-        //manager.GET( "http:/graph.facebook.com/bobdylan",
-//        parameters: nil,
-//        success: { (operation: AFHTTPRequestOperation!,responseObject: AnyObject!) in
-//            println("Response: " + responseObject.description)
-//        },
-//        failure: { (operation: AFHTTPRequestOperation!,error: NSError!) in
-//            println("Error: " + error.localizedDescription)
-//        })
+        manager.GET( "https://out-loud-heroku-test.herokuapp.com/api/presigned_post",
+        parameters: getPresignedPostParameters,
+        success: { (operation: AFHTTPRequestOperation!,responseObject: AnyObject!) in
+            println("Response: " + responseObject.description)
+        },
+        failure: { (operation: AFHTTPRequestOperation!,error: NSError!) in
+            println("Error: " + error.localizedDescription)
+        })
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
     func textView(textView: UITextView, shouldChangeTextInRange range: NSRange, replacementText text: String) -> Bool {
@@ -50,7 +52,7 @@ class PublishViewController: UIViewController, UITextViewDelegate {
     }
     
     func textViewDidChange(textView: UITextView) {
-        policyAndSignatureForm["title"] = textView.text
+        //policyAndSignatureForm["title"] = textView.text
     }
 
     /*
