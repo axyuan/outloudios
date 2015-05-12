@@ -16,6 +16,8 @@ class PublishViewController: UIViewController, UITextViewDelegate {
     var receivedAudio:RecordedAudio!
     var caption = ""
     
+    let manager = AFHTTPRequestOperationManager()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -40,8 +42,6 @@ class PublishViewController: UIViewController, UITextViewDelegate {
     }
 
     @IBAction func publish(sender: CustomButton) {
-        let manager = AFHTTPRequestOperationManager()
-        
         var getPresignedPostParameters = [
             "title": caption,
             "duration": receivedAudio.duration,
@@ -56,8 +56,40 @@ class PublishViewController: UIViewController, UITextViewDelegate {
         })
     }
     
-    func post(operation: AFHTTPRequestOperation!,responseObject: AnyObject!) {
-        println("Response: " + responseObject.description)
+    func post(operation: AFHTTPRequestOperation!, responseObject: AnyObject!) {
+        var parameters = [String: AnyObject]()
+        
+        if let id = responseObject?.objectForKey("AWSAccessKeyId") as? String {
+            parameters["AWSAccessKeyId"] = id
+        }
+        
+        if let key = responseObject?.objectForKey("key") as? String {
+            parameters["key"] = key
+        }
+        
+        if let policy = responseObject?.objectForKey("policy") as? String {
+            parameters["policy"] = policy
+        }
+        
+        if let signature = responseObject?.objectForKey("signature") as? String {
+            parameters["signature"] = signature
+        }
+        
+        parameters["file"] = receivedAudio
+        
+        println(parameters)
+        
+        manager.POST( "https://s3.amazonaws.com/out-loud",
+        parameters: parameters,
+        success: postSuccess,
+        failure: { (operation: AFHTTPRequestOperation!,error: NSError!) in
+            println(error.localizedDescription)
+        })
+    }
+    
+    func postSuccess(operation: AFHTTPRequestOperation!,responseObject: AnyObject!) {
+        println("AWS SUCCESS - READY TO POST")
+        println(responseObject.description)
     }
     
     /*
