@@ -75,14 +75,15 @@ class PublishViewController: UIViewController, UITextViewDelegate {
             parameters["signature"] = signature
         }
         
-        parameters["file"] = receivedAudio
+        parameters["file"] = receivedAudio.filePathURL
         
         println(parameters)
         
-        manager.POST( "https://s3.amazonaws.com/out-loud",
+        manager.PUT( "https://s3.amazonaws.com/out-loud",
         parameters: parameters,
         success: postSuccess,
         failure: { (operation: AFHTTPRequestOperation!,error: NSError!) in
+            println("ERROR")
             println(error.localizedDescription)
         })
     }
