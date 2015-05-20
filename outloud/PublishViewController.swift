@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import AVFoundation
 
 class PublishViewController: UIViewController, UITextViewDelegate {
     
@@ -40,67 +41,23 @@ class PublishViewController: UIViewController, UITextViewDelegate {
     func textViewDidChange(textView: UITextView) {
         caption = textView.text
     }
-
-    @IBAction func publish(sender: CustomButton) {
-        var getPresignedPostParameters = [
-            "title": caption,
-            "duration": receivedAudio.duration,
-            "tags": []
-        ]
-        
-        manager.GET( "https://out-loud-heroku-test.herokuapp.com/api/presigned_post",
-            parameters: getPresignedPostParameters,
-            success: post,
-            failure: { (operation: AFHTTPRequestOperation!,error: NSError!) in
-                println("Error: " + error.localizedDescription)
-        })
-    }
     
-    func post(operation: AFHTTPRequestOperation!, responseObject: AnyObject!) {
-        var parameters = [String: AnyObject]()
-        
-        if let id = responseObject?.objectForKey("AWSAccessKeyId") as? String {
-            parameters["AWSAccessKeyId"] = id
-        }
-        
-        if let key = responseObject?.objectForKey("key") as? String {
-            parameters["key"] = key
-        }
-        
-        if let policy = responseObject?.objectForKey("policy") as? String {
-            parameters["policy"] = policy
-        }
-        
-        if let signature = responseObject?.objectForKey("signature") as? String {
-            parameters["signature"] = signature
-        }
-        
-        parameters["file"] = receivedAudio.filePathURL
-        
-        println(parameters)
-        
-        manager.PUT( "https://s3.amazonaws.com/out-loud",
-        parameters: parameters,
-        success: postSuccess,
-        failure: { (operation: AFHTTPRequestOperation!,error: NSError!) in
-            println("ERROR")
-            println(error.localizedDescription)
-        })
-    }
-    
-    func postSuccess(operation: AFHTTPRequestOperation!,responseObject: AnyObject!) {
-        println("AWS SUCCESS - READY TO POST")
-        println(responseObject.description)
-    }
-    
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+        if segue.identifier == "save" {
+            println("saving")
+            
+            let MainVC:ViewController = segue.destinationViewController as! ViewController
+            
+            var newEntry = [String: AnyObject]()
+            
+            if let audio = receivedAudio?.filePathURL {
+                newEntry["url"] = audio
+            }
+            newEntry["name"] = caption
+            
+            MainVC.savedFiles.append(newEntry)
+        }
     }
-    */
+
 
 }

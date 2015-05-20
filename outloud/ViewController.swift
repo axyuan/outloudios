@@ -33,9 +33,15 @@ class ViewController: UIViewController, AVAudioRecorderDelegate {
     var audioPlayer = AVAudioPlayer()
     var recordedAudio: RecordedAudio!
     var recording: NSURL!
+    var savedFiles: [Dictionary<String, AnyObject>] = []
     
     override func viewDidLoad() {
+        println("main vc loaded")
         super.viewDidLoad()
+        
+        let backButton = UIBarButtonItem(title: "", style: UIBarButtonItemStyle.Plain, target: navigationController, action: nil)
+        navigationItem.leftBarButtonItem = backButton
+        
         setVisibilityForRecordingState(currentRecordingState)
         
         remainingTime = timeLimit
