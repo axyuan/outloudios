@@ -39,6 +39,14 @@ class ViewController: UIViewController, AVAudioRecorderDelegate {
         println("main vc loaded")
         super.viewDidLoad()
         
+        for var i=0; i<savedFiles.count; i++ {
+            let buttonView = UIButton()            
+            buttonView.setTitle(savedFiles[i]["name"] as! String, forState: .Normal)
+            buttonView.setTitleColor(UIColor.blueColor(), forState: .Normal)
+            buttonView.frame = CGRectMake(10, 30, 100, 100)
+            self.view.addSubview(buttonView)
+        }
+        
         let backButton = UIBarButtonItem(title: "", style: UIBarButtonItemStyle.Plain, target: navigationController, action: nil)
         navigationItem.leftBarButtonItem = backButton
         
