@@ -58,10 +58,15 @@ class ViewController: UIViewController, AVAudioRecorderDelegate {
     }
     
     func pressed(sender: UIButton!) {
-        println("PRESSED!")
-        println(sender)
-        println(sender.titleLabel!.text)
+        var targetURL:NSURL
         
+        for var i=0; i<savedFiles.count; i++ {
+            if savedFiles[i]["name"] as! String == sender.titleLabel!.text {
+                var error:NSError?
+                audioPlayer = AVAudioPlayer(contentsOfURL: savedFiles[i]["url"] as! NSURL, error: &error)
+                audioPlayer.play()
+            }
+        }
     }
 
     override func didReceiveMemoryWarning() {
