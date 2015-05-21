@@ -25,7 +25,6 @@ class PublishViewController: UIViewController, UITextViewDelegate {
         textarea.layer.masksToBounds = true
         textarea.layer.borderColor = UIColor.grayColor().CGColor
         textarea.layer.borderWidth = 1.0
-        
         textarea.delegate = self
     }
 
@@ -43,21 +42,15 @@ class PublishViewController: UIViewController, UITextViewDelegate {
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if segue.identifier == "save" {
-            println("saving")
-            
-            let MainVC:ViewController = segue.destinationViewController as! ViewController
-            
-            var newEntry = [String: AnyObject]()
-            
-            if let audio = receivedAudio?.filePathURL {
-                newEntry["url"] = audio
-            }
-            newEntry["name"] = caption
-            
-            MainVC.savedFiles.append(newEntry)
+        var MainVC = segue.destinationViewController as! ViewController
+        
+        var newEntry = [String: AnyObject]()
+        
+        if let audio = receivedAudio?.filePathURL {
+            newEntry["url"] = audio
         }
+        
+        newEntry["name"] = caption
+        MainVC.tempSavedFile = newEntry
     }
-
-
 }

@@ -18,7 +18,7 @@ class ViewController: UIViewController, AVAudioRecorderDelegate {
     @IBOutlet weak var countdown: UILabel!
     
     var audioFile: Bool = false
-    var timeLimit: Int = 10
+    let timeLimit: Int = 10
     var remainingTime: Int = 0
     
     enum RecordingState {
@@ -34,25 +34,19 @@ class ViewController: UIViewController, AVAudioRecorderDelegate {
     var recordedAudio: RecordedAudio!
     var recording: NSURL!
     var savedFiles: [Dictionary<String, AnyObject>] = []
+    var tempSavedFile = [String: AnyObject]()
     
     override func viewDidLoad() {
-        println("main vc loaded")
         super.viewDidLoad()
-        
-        for var i=0; i<savedFiles.count; i++ {
-            let buttonView = UIButton()
-            buttonView.setTitle(savedFiles[i]["name"] as! String, forState: .Normal)
-            buttonView.setTitleColor(UIColor.blueColor(), forState: .Normal)
-            buttonView.frame = CGRectMake(10, 30, 100, 100)
-            buttonView.addTarget(self, action: "pressed:", forControlEvents: .TouchUpInside)
-            self.view.addSubview(buttonView)
-        }
         
         let backButton = UIBarButtonItem(title: "", style: UIBarButtonItemStyle.Plain, target: navigationController, action: nil)
         navigationItem.leftBarButtonItem = backButton
         
-        setVisibilityForRecordingState(currentRecordingState)
-        
+        reset()
+    }
+    
+    func reset() {
+        setVisibilityForRecordingState(.Waiting)
         remainingTime = timeLimit
         countdown.text = String(remainingTime)
     }
@@ -97,6 +91,28 @@ class ViewController: UIViewController, AVAudioRecorderDelegate {
     @IBAction func deleteAudio(sender: UIButton) {
         audioPlayer.stop()
         setVisibilityForRecordingState(.Waiting)
+    }
+    
+    @IBAction func unwindToMain(sender: UIStoryboardSegue)
+    {
+        let sourceViewController = sender.sourceViewController
+        // Pull any data from the view controller which initiated the unwind segue.
+        
+        if let _ = tempSavedFile["url"] {
+            savedFiles.append(tempSavedFile)
+            tempSavedFile = [:]
+        }
+        
+        for var i=0; i<savedFiles.count; i++ {
+            let buttonView = UIButton()
+            buttonView.setTitle(savedFiles[i]["name"] as! String, forState: .Normal)
+            buttonView.setTitleColor(UIColor.blueColor(), forState: .Normal)
+            buttonView.frame = CGRectMake(10, 30 + 30 * CGFloat(i), 100, 100)
+            buttonView.addTarget(self, action: "pressed:", forControlEvents: .TouchUpInside)
+            self.view.addSubview(buttonView)
+        }
+        
+        reset()
     }
     
     func countdownDisplay() {
