@@ -107,7 +107,7 @@ class ViewController: UIViewController, AVAudioRecorderDelegate {
             let buttonView = UIButton()
             buttonView.setTitle(savedFiles[i]["name"] as! String, forState: .Normal)
             buttonView.setTitleColor(UIColor.blueColor(), forState: .Normal)
-            buttonView.frame = CGRectMake(10, 30 + 30 * CGFloat(i), 100, 100)
+            buttonView.frame = CGRectMake(10, 30 + 60 * CGFloat(i), 100, 100)
             buttonView.addTarget(self, action: "pressed:", forControlEvents: .TouchUpInside)
             self.view.addSubview(buttonView)
         }
