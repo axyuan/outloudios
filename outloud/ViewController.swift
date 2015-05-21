@@ -40,10 +40,11 @@ class ViewController: UIViewController, AVAudioRecorderDelegate {
         super.viewDidLoad()
         
         for var i=0; i<savedFiles.count; i++ {
-            let buttonView = UIButton()            
+            let buttonView = UIButton()
             buttonView.setTitle(savedFiles[i]["name"] as! String, forState: .Normal)
             buttonView.setTitleColor(UIColor.blueColor(), forState: .Normal)
             buttonView.frame = CGRectMake(10, 30, 100, 100)
+            buttonView.addTarget(self, action: "pressed:", forControlEvents: .TouchUpInside)
             self.view.addSubview(buttonView)
         }
         
@@ -54,6 +55,13 @@ class ViewController: UIViewController, AVAudioRecorderDelegate {
         
         remainingTime = timeLimit
         countdown.text = String(remainingTime)
+    }
+    
+    func pressed(sender: UIButton!) {
+        println("PRESSED!")
+        println(sender)
+        println(sender.titleLabel!.text)
+        
     }
 
     override func didReceiveMemoryWarning() {
