@@ -41,6 +41,18 @@ class PublishViewController: UIViewController, UITextViewDelegate {
         caption = textView.text
     }
     
+    override func shouldPerformSegueWithIdentifier(identifier: String?, sender: AnyObject?) -> Bool {
+        if count(caption) == 0 {
+            let alert = UIAlertView()
+            alert.title = "No Text"
+            alert.message = "Please assign a title to your recording"
+            alert.addButtonWithTitle("OK")
+            alert.show()
+            return false
+        }
+        return true
+    }
+    
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         var MainVC = segue.destinationViewController as! ViewController
         
