@@ -50,18 +50,6 @@ class ViewController: UIViewController, AVAudioRecorderDelegate {
         remainingTime = timeLimit
         countdown.text = String(remainingTime)
     }
-    
-    func pressed(sender: UIButton!) {
-        var targetURL:NSURL
-        
-        for var i=0; i<savedFiles.count; i++ {
-            if savedFiles[i]["name"] as! String == sender.titleLabel!.text {
-                var error:NSError?
-                audioPlayer = AVAudioPlayer(contentsOfURL: savedFiles[i]["url"] as! NSURL, error: &error)
-                audioPlayer.play()
-            }
-        }
-    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -71,6 +59,9 @@ class ViewController: UIViewController, AVAudioRecorderDelegate {
         if segue.identifier == "publish" {
             let PublishVC:PublishViewController = segue.destinationViewController as! PublishViewController
             PublishVC.receivedAudio = recordedAudio
+        } else if segue.identifier == "listen" {
+            let ListenVC:ListenViewController = segue.destinationViewController as! ListenViewController
+            ListenVC.savedFiles = savedFiles
         }
     }
     
@@ -101,15 +92,6 @@ class ViewController: UIViewController, AVAudioRecorderDelegate {
         if let _ = tempSavedFile["url"] {
             savedFiles.append(tempSavedFile)
             tempSavedFile = [:]
-        }
-        
-        for var i=0; i<savedFiles.count; i++ {
-            let buttonView = UIButton()
-            buttonView.setTitle(savedFiles[i]["name"] as! String, forState: .Normal)
-            buttonView.setTitleColor(UIColor.blueColor(), forState: .Normal)
-            buttonView.frame = CGRectMake(10, 30 + 60 * CGFloat(i), 100, 100)
-            buttonView.addTarget(self, action: "pressed:", forControlEvents: .TouchUpInside)
-            self.view.addSubview(buttonView)
         }
         
         reset()

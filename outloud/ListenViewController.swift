@@ -7,19 +7,44 @@
 //
 
 import UIKit
+import AVFoundation
 
 class ListenViewController: UIViewController {
 
     @IBOutlet weak var back: UIButton!
     
+    var savedFiles: [Dictionary<String, AnyObject>] = []
+    var audioPlayer = AVAudioPlayer()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        for var i=0; i<savedFiles.count; i++ {
+            let buttonView = UIButton()
+            buttonView.setTitle(savedFiles[i]["name"] as! String, forState: .Normal)
+            buttonView.setTitleColor(UIColor.blueColor(), forState: .Normal)
+            buttonView.frame = CGRectMake(10, 30 + 60 * CGFloat(i), 100, 100)
+            buttonView.addTarget(self, action: "pressed:", forControlEvents: .TouchUpInside)
+            self.view.addSubview(buttonView)
+        }
 
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    func pressed(sender: UIButton!) {
+        var targetURL:NSURL
+        
+        for var i=0; i<savedFiles.count; i++ {
+            if savedFiles[i]["name"] as! String == sender.titleLabel!.text {
+                var error:NSError?
+                audioPlayer = AVAudioPlayer(contentsOfURL: savedFiles[i]["url"] as! NSURL, error: &error)
+                audioPlayer.play()
+            }
+        }
     }
     
     @IBAction func done(sender: UIButton) {
