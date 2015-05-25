@@ -16,6 +16,7 @@
 		9B632E411AFA35B1008F668A /* CustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B632E401AFA35B1008F668A /* CustomButton.swift */; };
 		9B750D5B1AF24B3400B35210 /* RecordedAudio.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B750D5A1AF24B3400B35210 /* RecordedAudio.swift */; };
 		9BB62C601AF0EE2B00480093 /* PublishViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BB62C5F1AF0EE2B00480093 /* PublishViewController.swift */; };
+		9BD00E2F1B10B49400B94607 /* ListenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BD00E2E1B10B49400B94607 /* ListenViewController.swift */; };
 		9BD29E711AF78EEA0093325B /* AFHTTPRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BD29E5F1AF78EEA0093325B /* AFHTTPRequestOperation.m */; };
 		9BD29E721AF78EEA0093325B /* AFHTTPRequestOperationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BD29E611AF78EEA0093325B /* AFHTTPRequestOperationManager.m */; };
 		9BD29E731AF78EEA0093325B /* AFHTTPSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BD29E631AF78EEA0093325B /* AFHTTPSessionManager.m */; };
@@ -51,6 +52,7 @@
 		9B632E401AFA35B1008F668A /* CustomButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CustomButton.swift; path = outloud/CustomButton.swift; sourceTree = "<group>"; };
 		9B750D5A1AF24B3400B35210 /* RecordedAudio.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecordedAudio.swift; sourceTree = "<group>"; };
 		9BB62C5F1AF0EE2B00480093 /* PublishViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PublishViewController.swift; sourceTree = "<group>"; };
+		9BD00E2E1B10B49400B94607 /* ListenViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListenViewController.swift; sourceTree = "<group>"; };
 		9BD29E5E1AF78EEA0093325B /* AFHTTPRequestOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFHTTPRequestOperation.h; sourceTree = "<group>"; };
 		9BD29E5F1AF78EEA0093325B /* AFHTTPRequestOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFHTTPRequestOperation.m; sourceTree = "<group>"; };
 		9BD29E601AF78EEA0093325B /* AFHTTPRequestOperationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFHTTPRequestOperationManager.h; sourceTree = "<group>"; };
@@ -123,6 +125,7 @@
 				9B06487C1ACEBD9500D8F485 /* Images.xcassets */,
 				9B06487E1ACEBD9500D8F485 /* LaunchScreen.xib */,
 				9B0648731ACEBD9500D8F485 /* Supporting Files */,
+				9BD00E2E1B10B49400B94607 /* ListenViewController.swift */,
 			);
 			path = outloud;
 			sourceTree = "<group>";
@@ -286,6 +289,7 @@
 				9BD29E761AF78EEA0093325B /* AFURLConnectionOperation.m in Sources */,
 				9BD29E711AF78EEA0093325B /* AFHTTPRequestOperation.m in Sources */,
 				9B0648761ACEBD9500D8F485 /* AppDelegate.swift in Sources */,
+				9BD00E2F1B10B49400B94607 /* ListenViewController.swift in Sources */,
 				9BD29E771AF78EEA0093325B /* AFURLRequestSerialization.m in Sources */,
 				9BD29E731AF78EEA0093325B /* AFHTTPSessionManager.m in Sources */,
 				9BD29E741AF78EEA0093325B /* AFNetworkReachabilityManager.m in Sources */,

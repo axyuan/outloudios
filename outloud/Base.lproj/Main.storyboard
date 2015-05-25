@@ -59,11 +59,21 @@
                                     <segue destination="ye9-Ai-AXv" kind="show" identifier="publish" id="t4v-6y-8vF"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0Fp-Pm-Vhn">
+                                <rect key="frame" x="277" y="531" width="42" height="30"/>
+                                <state key="normal" title="Listen">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <segue destination="deL-Vw-TUD" kind="presentation" identifier="listen" id="EHX-FK-23f"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="dYH-am-JUP" firstAttribute="centerX" secondItem="w24-jp-sFv" secondAttribute="centerX" id="1Bx-g0-QIm"/>
                             <constraint firstAttribute="centerX" secondItem="0N2-pl-rb8" secondAttribute="centerX" constant="-0.5" id="61s-M3-CGU"/>
+                            <constraint firstAttribute="centerX" secondItem="0Fp-Pm-Vhn" secondAttribute="centerX" constant="2" id="ARo-JS-w4G"/>
                             <constraint firstItem="5Q5-Wf-jOZ" firstAttribute="top" secondItem="w24-jp-sFv" secondAttribute="bottom" constant="8" id="Adk-3X-fhM"/>
                             <constraint firstItem="dYH-am-JUP" firstAttribute="centerX" secondItem="5Q5-Wf-jOZ" secondAttribute="centerX" id="YiV-Qn-Cbu"/>
                             <constraint firstAttribute="centerX" secondItem="dYH-am-JUP" secondAttribute="centerX" id="eSX-v9-6u5"/>
@@ -84,6 +94,44 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1039" y="372"/>
+        </scene>
+        <!--Listen View Controller-->
+        <scene sceneID="jFQ-S3-mFH">
+            <objects>
+                <viewController id="deL-Vw-TUD" customClass="ListenViewController" customModule="outloud" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="jF0-2l-MGS"/>
+                        <viewControllerLayoutGuide type="bottom" id="L3q-g7-qLz"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="xxQ-xj-yBv">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="46t-Cj-p2N">
+                                <rect key="frame" x="0.0" y="-8" width="600" height="450"/>
+                            </scrollView>
+                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dCt-as-wFX">
+                                <rect key="frame" x="277" y="506" width="35" height="30"/>
+                                <state key="normal" title="Back">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="done:" destination="deL-Vw-TUD" eventType="touchUpInside" id="ucP-6h-uCw"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="centerX" secondItem="dCt-as-wFX" secondAttribute="centerX" constant="5.5" id="0XJ-u6-D7D"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="back" destination="dCt-as-wFX" id="Yh0-pb-ZRs"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="iGN-Ga-wA0" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1044" y="1034"/>
         </scene>
         <!--Publish View Controller-->
         <scene sceneID="Jd5-u8-Egk">
