@@ -13,20 +13,26 @@ class ListenViewController: UIViewController {
 
     @IBOutlet weak var back: UIButton!
     
+    @IBOutlet weak var scroller: UIScrollView!
+    
     var savedFiles: [Dictionary<String, AnyObject>] = []
     var audioPlayer = AVAudioPlayer()
     
     override func viewDidLoad() {
+        let buttonHeight = CGFloat(100)
         super.viewDidLoad()
         
         for var i=0; i<savedFiles.count; i++ {
             let buttonView = UIButton()
             buttonView.setTitle(savedFiles[i]["name"] as! String, forState: .Normal)
             buttonView.setTitleColor(UIColor.blueColor(), forState: .Normal)
-            buttonView.frame = CGRectMake(10, 30 + 60 * CGFloat(i), 100, 100)
+            buttonView.frame = CGRectMake(10, 30 + 60 * CGFloat(i), 100, buttonHeight)
             buttonView.addTarget(self, action: "pressed:", forControlEvents: .TouchUpInside)
-            self.view.addSubview(buttonView)
+            scroller.addSubview(buttonView)
         }
+        
+        scroller.contentSize = CGSizeMake(320, CGFloat(savedFiles.count) * buttonHeight)
+        
 
     }
 
@@ -48,7 +54,6 @@ class ListenViewController: UIViewController {
     }
     
     @IBAction func done(sender: UIButton) {
-        println("done")
         self.dismissViewControllerAnimated(false, completion: nil)
     }
 

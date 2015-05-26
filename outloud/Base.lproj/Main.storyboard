@@ -109,6 +109,7 @@
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="46t-Cj-p2N">
                                 <rect key="frame" x="0.0" y="-8" width="600" height="450"/>
+                                <color key="backgroundColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                             </scrollView>
                             <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dCt-as-wFX">
                                 <rect key="frame" x="277" y="506" width="35" height="30"/>
@@ -127,6 +128,7 @@
                     </view>
                     <connections>
                         <outlet property="back" destination="dCt-as-wFX" id="Yh0-pb-ZRs"/>
+                        <outlet property="scroller" destination="46t-Cj-p2N" id="ytZ-oa-Rhq"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iGN-Ga-wA0" userLabel="First Responder" sceneMemberID="firstResponder"/>
