@@ -19,8 +19,23 @@ class ListenViewController: UIViewController {
     var audioPlayer = AVAudioPlayer()
     
     override func viewDidLoad() {
-        let buttonHeight = CGFloat(100)
+        
         super.viewDidLoad()
+        
+        renderFiles()
+    }
+
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
+    }
+    
+    func renderFiles() {
+        for view in scroller.subviews {
+            view.removeFromSuperview()
+        }
+        
+        let buttonHeight = CGFloat(100)
         
         for var i=0; i<savedFiles.count; i++ {
             let buttonView = UIButton()
@@ -40,13 +55,6 @@ class ListenViewController: UIViewController {
         }
         
         scroller.contentSize = CGSizeMake(320, CGFloat(savedFiles.count) * buttonHeight)
-        
-
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
     func pressed(sender: UIButton!) {
@@ -64,6 +72,9 @@ class ListenViewController: UIViewController {
     func deleteAudio(sender: UIButton!) {
         let button = sender as! CustomDeleteButton
         println(button.index)
+        
+        savedFiles.removeAtIndex(button.index)
+        renderFiles()
     }
     
     @IBAction func done(sender: UIButton) {
