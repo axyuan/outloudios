@@ -62,6 +62,7 @@ class ViewController: UIViewController, AVAudioRecorderDelegate {
         } else if segue.identifier == "listen" {
             let ListenVC:ListenViewController = segue.destinationViewController as! ListenViewController
             ListenVC.savedFiles = savedFiles
+            ListenVC.modalParent = self
         }
     }
     

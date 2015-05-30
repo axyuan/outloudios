@@ -10,6 +10,8 @@ import UIKit
 import AVFoundation
 
 class ListenViewController: UIViewController {
+    
+    weak var modalParent : ViewController?
 
     @IBOutlet weak var back: UIButton!
     
@@ -71,8 +73,7 @@ class ListenViewController: UIViewController {
     
     func deleteAudio(sender: UIButton!) {
         let button = sender as! CustomDeleteButton
-        println(button.index)
-        
+        modalParent!.savedFiles.removeAtIndex(button.index)
         savedFiles.removeAtIndex(button.index)
         renderFiles()
     }
