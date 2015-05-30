@@ -29,6 +29,14 @@ class ListenViewController: UIViewController {
             buttonView.frame = CGRectMake(10, 30 + 60 * CGFloat(i), 100, buttonHeight)
             buttonView.addTarget(self, action: "pressed:", forControlEvents: .TouchUpInside)
             scroller.addSubview(buttonView)
+            
+            let deleteButtonView = CustomDeleteButton()
+            deleteButtonView.index = i;
+            deleteButtonView.setTitle("delete", forState: .Normal)
+            deleteButtonView.setTitleColor(UIColor.blueColor(), forState: .Normal)
+            deleteButtonView.frame = CGRectMake(100, 30 + 60 * CGFloat(i), 100, buttonHeight)
+            deleteButtonView.addTarget(self, action: "deleteAudio:", forControlEvents: .TouchUpInside)
+            scroller.addSubview(deleteButtonView)
         }
         
         scroller.contentSize = CGSizeMake(320, CGFloat(savedFiles.count) * buttonHeight)
@@ -51,6 +59,11 @@ class ListenViewController: UIViewController {
                 audioPlayer.play()
             }
         }
+    }
+    
+    func deleteAudio(sender: UIButton!) {
+        let button = sender as! CustomDeleteButton
+        println(button.index)
     }
     
     @IBAction func done(sender: UIButton) {
