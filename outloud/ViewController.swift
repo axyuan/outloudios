@@ -101,6 +101,8 @@ class ViewController: UIViewController, AVAudioRecorderDelegate {
     func countdownDisplay() {
         remainingTime = remainingTime - 1
         countdown.text = String(remainingTime)
+        audioRecorder.updateMeters()
+        println(audioRecorder.averagePowerForChannel(1))
         if remainingTime == 0 {
             toggleRecord(false)
         }
