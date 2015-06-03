@@ -35,6 +35,11 @@ class ViewController: UIViewController, AVAudioRecorderDelegate {
     var recording: NSURL!
     var savedFiles: [Dictionary<String, AnyObject>] = []
     var tempSavedFile = [String: AnyObject]()
+    var loop = GameLoop(frameInterval: 1, doSomething: {(self) in
+        //if currentRecordingState == RecordingState.InProgress {
+            println(vc)
+        //}
+    })
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -110,6 +115,8 @@ class ViewController: UIViewController, AVAudioRecorderDelegate {
     
     func toggleRecord(record: Bool) {
         if record == true {
+            println("START LOOP");
+            loop.start()
             timer = NSTimer.scheduledTimerWithTimeInterval(1.0, target: self, selector: Selector("countdownDisplay"), userInfo: nil, repeats: true)
             setVisibilityForRecordingState(.InProgress)
             let dirPath = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0] as! String
@@ -129,6 +136,8 @@ class ViewController: UIViewController, AVAudioRecorderDelegate {
             audioRecorder.prepareToRecord()
             audioRecorder.record()
         } else {
+            println("STOP LOOP")
+            loop.stop()
             recordedAudio = RecordedAudio()
             recordedAudio.duration = timeLimit - remainingTime
             

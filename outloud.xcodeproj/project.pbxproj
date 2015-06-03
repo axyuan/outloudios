@@ -14,6 +14,7 @@
 		9B0648801ACEBD9500D8F485 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9B06487E1ACEBD9500D8F485 /* LaunchScreen.xib */; };
 		9B06488C1ACEBD9500D8F485 /* outloudTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B06488B1ACEBD9500D8F485 /* outloudTests.swift */; };
 		9B1A2F851B1A5B0C00A42700 /* CustomDeleteButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B1A2F841B1A5B0C00A42700 /* CustomDeleteButton.swift */; };
+		9B30F34E1B1E5D5900CF574B /* visualizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B30F34D1B1E5D5900CF574B /* visualizer.swift */; };
 		9B632E411AFA35B1008F668A /* CustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B632E401AFA35B1008F668A /* CustomButton.swift */; };
 		9B750D5B1AF24B3400B35210 /* RecordedAudio.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B750D5A1AF24B3400B35210 /* RecordedAudio.swift */; };
 		9BB62C601AF0EE2B00480093 /* PublishViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BB62C5F1AF0EE2B00480093 /* PublishViewController.swift */; };
@@ -51,6 +52,7 @@
 		9B06488A1ACEBD9500D8F485 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9B06488B1ACEBD9500D8F485 /* outloudTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = outloudTests.swift; sourceTree = "<group>"; };
 		9B1A2F841B1A5B0C00A42700 /* CustomDeleteButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CustomDeleteButton.swift; path = outloud/CustomDeleteButton.swift; sourceTree = "<group>"; };
+		9B30F34D1B1E5D5900CF574B /* visualizer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = visualizer.swift; sourceTree = "<group>"; };
 		9B632E401AFA35B1008F668A /* CustomButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CustomButton.swift; path = outloud/CustomButton.swift; sourceTree = "<group>"; };
 		9B750D5A1AF24B3400B35210 /* RecordedAudio.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecordedAudio.swift; sourceTree = "<group>"; };
 		9BB62C5F1AF0EE2B00480093 /* PublishViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PublishViewController.swift; sourceTree = "<group>"; };
@@ -129,6 +131,7 @@
 				9B06487E1ACEBD9500D8F485 /* LaunchScreen.xib */,
 				9B0648731ACEBD9500D8F485 /* Supporting Files */,
 				9BD00E2E1B10B49400B94607 /* ListenViewController.swift */,
+				9B30F34D1B1E5D5900CF574B /* visualizer.swift */,
 			);
 			path = outloud;
 			sourceTree = "<group>";
@@ -291,6 +294,7 @@
 				9B632E411AFA35B1008F668A /* CustomButton.swift in Sources */,
 				9BD29E761AF78EEA0093325B /* AFURLConnectionOperation.m in Sources */,
 				9BD29E711AF78EEA0093325B /* AFHTTPRequestOperation.m in Sources */,
+				9B30F34E1B1E5D5900CF574B /* visualizer.swift in Sources */,
 				9B0648761ACEBD9500D8F485 /* AppDelegate.swift in Sources */,
 				9BD00E2F1B10B49400B94607 /* ListenViewController.swift in Sources */,
 				9BD29E771AF78EEA0093325B /* AFURLRequestSerialization.m in Sources */,
