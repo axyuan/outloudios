@@ -11,29 +11,29 @@ import UIKit
 
 class GameLoop : NSObject {
     
-    var doSomething: () -> ()!
+    var doSomething: (vc : ViewController?) -> ()
     var displayLink : CADisplayLink!
     var frameInterval : Int!
     
-    init(frameInterval: Int, doSomething: (vc: ViewController) -> ()) {
-        self.doSomething = { doSomething($0) }
+    init(frameInterval: Int, doSomething: (vc : ViewController?) -> ()) {
+        self.doSomething = {doSomething(vc : $0)}
         self.frameInterval = frameInterval
         super.init()
-        start()
     }
     
-    func handleTimer() {
-        doSomething()
+    func handleTimer(vc : ViewController) {
+        doSomething(vc: ViewController())
     }
     
     func start() {
-        displayLink = CADisplayLink(target: self, selector: Selector("handleTimer"))
+        displayLink = CADisplayLink(target: self, selector: Selector("handleTimer:"))
         displayLink.frameInterval = frameInterval
         displayLink.addToRunLoop(NSRunLoop.mainRunLoop(), forMode: NSRunLoopCommonModes)
     }
     
     func stop() {
         displayLink.removeFromRunLoop(NSRunLoop.mainRunLoop(), forMode: NSDefaultRunLoopMode)
+        displayLink.invalidate()
         displayLink = nil
     }
 }

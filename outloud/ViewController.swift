@@ -10,7 +10,7 @@ import UIKit
 import AVFoundation
 
 class ViewController: UIViewController, AVAudioRecorderDelegate {
-
+    
     @IBOutlet weak var recordButton: UIButton!
     @IBOutlet weak var previewButton: UIButton!
     @IBOutlet weak var deleteButton: UIButton!
@@ -35,11 +35,12 @@ class ViewController: UIViewController, AVAudioRecorderDelegate {
     var recording: NSURL!
     var savedFiles: [Dictionary<String, AnyObject>] = []
     var tempSavedFile = [String: AnyObject]()
-    var loop = GameLoop(frameInterval: 1, doSomething: {(self) in
-        //if currentRecordingState == RecordingState.InProgress {
-            println(vc)
-        //}
-    })
+    var loop = GameLoop(frameInterval: 1) { (vc) -> () in
+        println(vc!.savedFiles)
+        if let ar = vc!.audioRecorder {
+            println(ar.averagePowerForChannel(1))
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -55,7 +56,7 @@ class ViewController: UIViewController, AVAudioRecorderDelegate {
         remainingTime = timeLimit
         countdown.text = String(remainingTime)
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
@@ -76,7 +77,7 @@ class ViewController: UIViewController, AVAudioRecorderDelegate {
         audioPlayer.prepareToPlay()
         audioPlayer.play()
     }
-
+    
     @IBAction func recordAudio(sender: UIButton) {
         if self.currentRecordingState == RecordingState.InProgress {
             toggleRecord(false)
@@ -107,7 +108,6 @@ class ViewController: UIViewController, AVAudioRecorderDelegate {
         remainingTime = remainingTime - 1
         countdown.text = String(remainingTime)
         audioRecorder.updateMeters()
-        println(audioRecorder.averagePowerForChannel(1))
         if remainingTime == 0 {
             toggleRecord(false)
         }
