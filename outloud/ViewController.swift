@@ -35,12 +35,8 @@ class ViewController: UIViewController, AVAudioRecorderDelegate {
     var recording: NSURL!
     var savedFiles: [Dictionary<String, AnyObject>] = []
     var tempSavedFile = [String: AnyObject]()
-    var loop = GameLoop(frameInterval: 1) { (vc) -> () in
-        println(vc!.savedFiles)
-        if let ar = vc!.audioRecorder {
-            println(ar.averagePowerForChannel(1))
-        }
-    }
+    var loop:GameLoop!
+    var circleView:CircleView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -48,7 +44,17 @@ class ViewController: UIViewController, AVAudioRecorderDelegate {
         let backButton = UIBarButtonItem(title: "", style: UIBarButtonItemStyle.Plain, target: navigationController, action: nil)
         navigationItem.leftBarButtonItem = backButton
         
+        addCircleView()
         reset()
+    }
+    
+    func addCircleView() {
+        var circleWidth = CGFloat(200)
+        var circleHeight = circleWidth
+        circleView = CircleView(frame: CGRectMake((self.view.frame.width / 2) - (circleWidth / 2), (self.view.frame.height / 2) - (circleWidth / 2), circleWidth, circleHeight))
+        
+        view.addSubview(circleView)
+        self.view.sendSubviewToBack(circleView)
     }
     
     func reset() {
@@ -116,7 +122,6 @@ class ViewController: UIViewController, AVAudioRecorderDelegate {
     func toggleRecord(record: Bool) {
         if record == true {
             println("START LOOP");
-            loop.start()
             timer = NSTimer.scheduledTimerWithTimeInterval(1.0, target: self, selector: Selector("countdownDisplay"), userInfo: nil, repeats: true)
             setVisibilityForRecordingState(.InProgress)
             let dirPath = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0] as! String
@@ -135,6 +140,14 @@ class ViewController: UIViewController, AVAudioRecorderDelegate {
             audioRecorder.meteringEnabled = true
             audioRecorder.prepareToRecord()
             audioRecorder.record()
+            
+            loop = GameLoop(frameInterval: 1) { (vc) -> () in
+                println(vc!.savedFiles)
+                if let ar = vc!.audioRecorder {
+                    println(ar.averagePowerForChannel(1))
+                }
+            }
+            loop.start()
         } else {
             println("STOP LOOP")
             loop.stop()
