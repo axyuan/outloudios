@@ -19,6 +19,7 @@ class CircleView: UIView {
     }
     
     override func drawRect(rect: CGRect) {
+        println("draw rect")
         // Get the Graphics Context
         var context = UIGraphicsGetCurrentContext();
         

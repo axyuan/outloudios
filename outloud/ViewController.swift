@@ -114,10 +114,17 @@ class ViewController: UIViewController, AVAudioRecorderDelegate {
         remainingTime = remainingTime - 1
         countdown.text = String(remainingTime)
         audioRecorder.updateMeters()
+        
+//        var circleWidth = CGFloat(100)
+//        var circleHeight = circleWidth
+//        circleView.frame = CGRectMake((self.view.frame.width / 2) - (circleWidth / 2), (self.view.frame.height / 2) - (circleWidth / 2), circleWidth, circleHeight)
+//        circleView.setNeedsDisplay()
+        
         if remainingTime == 0 {
             toggleRecord(false)
         }
     }
+    
     
     func toggleRecord(record: Bool) {
         if record == true {
@@ -141,12 +148,12 @@ class ViewController: UIViewController, AVAudioRecorderDelegate {
             audioRecorder.prepareToRecord()
             audioRecorder.record()
             
-            loop = GameLoop(frameInterval: 1) { (vc) -> () in
-                println(vc!.savedFiles)
+            loop = GameLoop(frameInterval: 1, doSomething: { (vc) -> () in
+                println("hi")
                 if let ar = vc!.audioRecorder {
                     println(ar.averagePowerForChannel(1))
                 }
-            }
+            })
             loop.start()
         } else {
             println("STOP LOOP")
