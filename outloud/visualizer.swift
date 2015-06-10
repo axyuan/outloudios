@@ -11,22 +11,23 @@ import UIKit
 
 class GameLoop : NSObject {
     
-    var doSomething: (vc : ViewController?) -> ()
+    var viewController : UIViewController
     var displayLink : CADisplayLink!
     var frameInterval : Int!
     
-    init(frameInterval: Int, doSomething: (vc : ViewController?) -> ()) {
-        self.doSomething = {doSomething(vc : $0)}
+    init(frameInterval: Int, view: UIViewController) {
         self.frameInterval = frameInterval
+        self.viewController = view
         super.init()
     }
     
-    func handleTimer(vc : ViewController) {
-        doSomething(vc: ViewController())
+    func handleTimer() {
+        var viewCOn = self.viewController as! ViewController
+        println(viewCOn.audioRecorder.averagePowerForChannel(1))
     }
     
     func start() {
-        displayLink = CADisplayLink(target: self, selector: Selector("handleTimer:"))
+        displayLink = CADisplayLink(target: self, selector: Selector("handleTimer"))
         displayLink.frameInterval = frameInterval
         displayLink.addToRunLoop(NSRunLoop.mainRunLoop(), forMode: NSRunLoopCommonModes)
     }

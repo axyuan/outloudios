@@ -128,7 +128,6 @@ class ViewController: UIViewController, AVAudioRecorderDelegate {
     
     func toggleRecord(record: Bool) {
         if record == true {
-            println("START LOOP");
             timer = NSTimer.scheduledTimerWithTimeInterval(1.0, target: self, selector: Selector("countdownDisplay"), userInfo: nil, repeats: true)
             setVisibilityForRecordingState(.InProgress)
             let dirPath = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0] as! String
@@ -147,16 +146,10 @@ class ViewController: UIViewController, AVAudioRecorderDelegate {
             audioRecorder.meteringEnabled = true
             audioRecorder.prepareToRecord()
             audioRecorder.record()
-            
-            loop = GameLoop(frameInterval: 1, doSomething: { (vc) -> () in
-                println("hi")
-                if let ar = vc!.audioRecorder {
-                    println(ar.averagePowerForChannel(1))
-                }
-            })
+
+            loop = GameLoop(frameInterval: 10, view: self)
             loop.start()
         } else {
-            println("STOP LOOP")
             loop.stop()
             recordedAudio = RecordedAudio()
             recordedAudio.duration = timeLimit - remainingTime
