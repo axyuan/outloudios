@@ -115,11 +115,6 @@ class ViewController: UIViewController, AVAudioRecorderDelegate {
         countdown.text = String(remainingTime)
         audioRecorder.updateMeters()
         
-//        var circleWidth = CGFloat(100)
-//        var circleHeight = circleWidth
-//        circleView.frame = CGRectMake((self.view.frame.width / 2) - (circleWidth / 2), (self.view.frame.height / 2) - (circleWidth / 2), circleWidth, circleHeight)
-//        circleView.setNeedsDisplay()
-        
         if remainingTime == 0 {
             toggleRecord(false)
         }

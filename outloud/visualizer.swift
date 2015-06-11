@@ -14,6 +14,10 @@ class GameLoop : NSObject {
     var viewController : UIViewController
     var displayLink : CADisplayLink!
     var frameInterval : Int!
+    var minPower = -160.0
+    var maxPower = 0.0
+    var minRadius = 150.0
+    var maxRadius = 200.0
     
     init(frameInterval: Int, view: UIViewController) {
         self.frameInterval = frameInterval
@@ -23,7 +27,13 @@ class GameLoop : NSObject {
     
     func handleTimer() {
         var viewCOn = self.viewController as! ViewController
-        println(viewCOn.audioRecorder.averagePowerForChannel(1))
+        var power = Double(viewCOn.audioRecorder.averagePowerForChannel(1))
+        var newRadius = minRadius + ((power - minPower) / (maxPower - minPower)) * (maxRadius - minRadius)
+        
+        var circleWidth = CGFloat(newRadius)
+        var circleHeight = circleWidth
+        viewCOn.circleView.frame = CGRectMake((viewCOn.view.frame.width / 2) - (circleWidth / 2), (viewCOn.view.frame.height / 2) - (circleWidth / 2), circleWidth, circleHeight)
+        viewCOn.circleView.setNeedsDisplay()
     }
     
     func start() {
