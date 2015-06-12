@@ -30,10 +30,7 @@ class GameLoop : NSObject {
         var power = Double(viewCOn.audioRecorder.averagePowerForChannel(1))
         var newRadius = minRadius + ((power - minPower) / (maxPower - minPower)) * (maxRadius - minRadius)
         
-        var circleWidth = CGFloat(newRadius)
-        var circleHeight = circleWidth
-        viewCOn.circleView.frame = CGRectMake((viewCOn.view.frame.width / 2) - (circleWidth / 2), (viewCOn.view.frame.height / 2) - (circleWidth / 2), circleWidth, circleHeight)
-        viewCOn.circleView.setNeedsDisplay()
+        viewCOn.circleView.draw(CGFloat(newRadius))
     }
     
     func start() {
