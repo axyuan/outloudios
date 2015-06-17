@@ -142,7 +142,7 @@ class ViewController: UIViewController, AVAudioRecorderDelegate {
             audioRecorder.prepareToRecord()
             audioRecorder.record()
 
-            loop = GameLoop(frameInterval: 10, view: self)
+            loop = GameLoop(frameInterval: 1, view: self)
             loop.start()
         } else {
             loop.stop()
