@@ -23,7 +23,8 @@ class CircleView: UIView {
         self.layer.frame = frame
         
         subLayer.frame = CGRect(origin: CGPoint(x: 0, y: 0), size: CGSize(width: self.layer.frame.width, height: self.layer.frame.height))
-        subLayer.backgroundColor = UIColor.blueColor().CGColor
+        subLayer.borderWidth = 1
+        subLayer.borderColor = UIColor(red: CGFloat(231/255.0), green: CGFloat(76/255.0), blue: CGFloat(60/255.0), alpha: 1.0).CGColor
         subLayer.cornerRadius = self.layer.frame.width / 2
     }
     
