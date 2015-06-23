@@ -72,9 +72,14 @@ class ViewController: UIViewController, AVAudioRecorderDelegate {
             let PublishVC:PublishViewController = segue.destinationViewController as! PublishViewController
             PublishVC.receivedAudio = recordedAudio
         } else if segue.identifier == "listen" {
-            let ListenVC:ListenViewController = segue.destinationViewController as! ListenViewController
-            ListenVC.savedFiles = savedFiles
-            ListenVC.modalParent = self
+            
+            let navVC = segue.destinationViewController as! UINavigationController
+            
+            let tableVC = navVC.viewControllers.first as! ListenTableViewController
+            
+            tableVC.savedFiles = savedFiles
+            
+            tableVC.modalParent = self
         }
     }
     
@@ -108,6 +113,10 @@ class ViewController: UIViewController, AVAudioRecorderDelegate {
         }
         
         reset()
+    }
+    
+    @IBAction func backToViewController(segue:UIStoryboardSegue) {
+        
     }
     
     func countdownDisplay() {
